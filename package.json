@@ -1,0 +1,26 @@
+{
+  "name": "q-bot",
+  "version": "1.0.0",
+  "description": "Q-Bot Game",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack -w --config webpack.config.js",
+    "http": "http-server ./ -p 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobotsPlay/q-bot.git"
+  },
+  "author": "John Graham @RobotsPlay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RobotsPlay/q-bot/issues"
+  },
+  "homepage": "https://github.com/RobotsPlay/q-bot#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
