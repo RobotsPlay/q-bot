@@ -1,8 +1,13 @@
-import * as THREE from 'three';
+import {
+    Mesh,
+    MeshLambertMaterial,
+    SphereGeometry
+} from 'three';
 
 export default class Player {
-    constructor(screen) {
+    constructor(screen, level) {
         this.screen = screen;
+        this.level = level;
         this.current_cube = null;
         this.radius = .325;
 
@@ -10,9 +15,9 @@ export default class Player {
     }
 
     createAvatar() {
-        const geometry = new THREE.SphereGeometry(this.radius, 12, 12);
-        const material = new THREE.MeshLambertMaterial({color: 0xee0000});
-        this.avatar = new THREE.Mesh(geometry, material);
+        const geometry = new SphereGeometry(this.radius, 12, 12);
+        const material = new MeshLambertMaterial({color: 0xee0000});
+        this.avatar = new Mesh(geometry, material);
         this.avatar.position.x = 0;
         this.avatar.position.y = 0;
         this.avatar.position.z = 1;
@@ -20,16 +25,22 @@ export default class Player {
         this.screen.scene.add(this.avatar);
     }
 
-    setCurrentCube(cube) {
+    setCurrentCube(cube, advanceCubeState = true) {
         this.current_cube = cube;
         this.avatar.position.x = cube.point.x;
         this.avatar.position.y = cube.point.y + (this.radius);
         this.avatar.position.z = cube.point.z;
+
+        if(advanceCubeState) {
+            this.level.advanceCubeState(this.current_cube);
+        }
     }
 
-    move(direction, cubes) {
-        if(this.current_cube[direction] !== null && cubes[this.current_cube[direction]]) {
-            this.setCurrentCube(cubes[this.current_cube[direction]]);
+    move(direction) {
+        if(this.current_cube[direction] !== null && this.level.cubes[this.current_cube[direction]]) {
+            this.setCurrentCube(this.level.cubes[this.current_cube[direction]]);
+
+            
         }
     }
 

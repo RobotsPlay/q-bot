@@ -1,4 +1,10 @@
-import * as THREE from 'three';
+import {
+  AmbientLight,
+  DirectionalLight,
+  OrthographicCamera,
+  Scene,
+  WebGLRenderer
+} from 'three';
 
 export default class Screen {
   constructor() {
@@ -12,20 +18,20 @@ export default class Screen {
 
   initThree() {
 
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.OrthographicCamera(window.innerWidth / -165, window.innerWidth / 165, window.innerHeight / 165, window.innerHeight / -165, 1, 1000);
+    this.scene = new Scene();
+    this.camera = new OrthographicCamera(window.innerWidth / -165, window.innerWidth / 165, window.innerHeight / 165, window.innerHeight / -165, 1, 1000);
 
-    var ambient_light = new THREE.AmbientLight(0xffffff, .75);
+    var ambient_light = new AmbientLight(0xffffff, .75);
     this.scene.add(ambient_light);
 
-    let direction_light = new THREE.DirectionalLight(0xffffff, 1.5);
+    let direction_light = new DirectionalLight(0xffffff, .325);
     this.scene.add(direction_light);
     
-    const directional_light_side = new THREE.DirectionalLight(0xffffff, .25);
+    const directional_light_side = new DirectionalLight(0xffffff, .25);
     directional_light_side.position.set(10, -10, 10);
     this.scene.add( directional_light_side );
 
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new WebGLRenderer();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
 

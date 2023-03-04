@@ -5,22 +5,22 @@ import Screen from './Screen.js';
 let screen = new Screen();
 let level = new Level(screen);
 
-let player = new Player(screen);
-player.setCurrentCube(level.cubes[level.cubes.length -1]);
+let player = new Player(screen, level);
+player.setCurrentCube(level.cubes[level.cubes.length -1], false);
 
 window.addEventListener('keydown', (e) => {
   switch(e.code) {
     case 'ArrowLeft':
-      player.move('left', level.cubes);
+      player.move('left');
       break;
     case 'ArrowUp':
-        player.move('up', level.cubes);
+        player.move('up');
         break;
     case 'ArrowRight':
-      player.move('right', level.cubes);
+      player.move('right');
       break;
     case 'ArrowDown':
-      player.move('down', level.cubes);
+      player.move('down');
       break;
     default:
       return;
