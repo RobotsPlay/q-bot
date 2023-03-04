@@ -11,17 +11,19 @@ export default class Screen {
   }
 
   initThree() {
+
     this.scene = new THREE.Scene();
     this.camera = new THREE.OrthographicCamera(window.innerWidth / -165, window.innerWidth / 165, window.innerHeight / 165, window.innerHeight / -165, 1, 1000);
 
-    var ambient_light = new THREE.AmbientLight(0x404040);
+    var ambient_light = new THREE.AmbientLight(0xffffff, .75);
     this.scene.add(ambient_light);
 
-    let light = new THREE.HemisphereLight(0x404040, 0xFFFFFF, 0.5);
-    this.scene.add(light);
-
-    let direction_light = new THREE.DirectionalLight(0x404040, 0.5);
+    let direction_light = new THREE.DirectionalLight(0xffffff, 1.5);
     this.scene.add(direction_light);
+    
+    const directional_light_side = new THREE.DirectionalLight(0xffffff, .25);
+    directional_light_side.position.set(10, -10, 10);
+    this.scene.add( directional_light_side );
 
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -35,6 +37,6 @@ export default class Screen {
   }
 
   renderScene() {
-    this.renderer.render( this.scene, this.camera );
+    this.renderer.render(this.scene, this.camera);
   }
 }
