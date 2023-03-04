@@ -12,7 +12,7 @@ export default class Screen {
 
   initThree() {
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
+    this.camera = new THREE.OrthographicCamera(window.innerWidth / -165, window.innerWidth / 165, window.innerHeight / 165, window.innerHeight / -165, 1, 1000);
 
     var ambient_light = new THREE.AmbientLight(0x404040);
     this.scene.add(ambient_light);
@@ -27,9 +27,10 @@ export default class Screen {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
 
-    this.camera.position.x = -.5;
-    this.camera.position.z = 15;
-    this.camera.position.y = 15.5;
+    this.camera.position.x = 0;
+    this.camera.position.z = 1;
+    this.camera.position.y = 6;
+
     this.camera.rotation.x= -0.58398;
   }
 
